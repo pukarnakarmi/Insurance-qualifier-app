@@ -1,8 +1,9 @@
 (function () {
-  const dueDate = new Date('2027-01-08T00:00:00');
+  let dueDate = new Date('2027-01-08T00:00:00');
   const fullTermDays = 280;
 
   const dueDateEl = document.getElementById('dueDate');
+  const dueDateInputEl = document.getElementById('dueDateInput');
   const todayDateEl = document.getElementById('todayDate');
   const monthsEl = document.getElementById('months');
   const weeksEl = document.getElementById('weeks');
@@ -12,6 +13,13 @@
 
   function startOfDay(date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  function toInputDateString(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
   }
 
   function addMonths(date, months) {
@@ -76,6 +84,21 @@
     const pregDays = pregnancyDaysElapsed % 7;
     pregnancyAgeEl.textContent = `Current pregnancy age: ${pregWeeks} weeks ${pregDays} days.`;
   }
+
+  dueDateInputEl.value = toInputDateString(startOfDay(dueDate));
+  dueDateInputEl.addEventListener('change', (event) => {
+    if (!event.target.value) {
+      return;
+    }
+
+    const selectedDueDate = new Date(`${event.target.value}T00:00:00`);
+    if (Number.isNaN(selectedDueDate.getTime())) {
+      return;
+    }
+
+    dueDate = selectedDueDate;
+    updateCountdown();
+  });
 
   updateCountdown();
   setInterval(updateCountdown, 60 * 60 * 1000);
