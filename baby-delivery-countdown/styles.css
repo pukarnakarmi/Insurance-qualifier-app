@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f5f7fb;
+}
+
+.card {
+  width: min(92vw, 620px);
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.meta {
+  margin: 6px 0;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.box {
+  background: #eef3ff;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+
+.box span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.box small {
+  color: #42526a;
+}
+
+.summary {
+  margin: 8px 0;
+}
